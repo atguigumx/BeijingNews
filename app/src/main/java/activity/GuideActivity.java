@@ -17,6 +17,7 @@ import com.example.maxin.beijingnews.R;
 
 import java.util.ArrayList;
 
+import utils.CacheUtils;
 import utils.DensityUtil;
 
 import static com.example.maxin.beijingnews.R.id.iv_red_point;
@@ -27,6 +28,7 @@ public class GuideActivity extends AppCompatActivity {
     private LinearLayout llPointGroup;
     private ImageView ivRedPoint;
     private ViewPager viewpager;
+    public static String STARTMAIN="1993";
     private ArrayList<ImageView> list;
     private int leftMarg;
     private int widthDpi;
@@ -127,7 +129,11 @@ public class GuideActivity extends AppCompatActivity {
     class MyOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            //记录进入过引导页面
+            CacheUtils.putBoolean(GuideActivity.this,STARTMAIN,true);
+
             startActivity(new Intent(GuideActivity.this,MainActivity.class));
+
             finish();
         }
     }

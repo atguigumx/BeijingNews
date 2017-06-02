@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import com.example.maxin.beijingnews.R;
 
+import utils.CacheUtils;
+
 public class WelcomeActivity extends AppCompatActivity {
     /*private RelativeLayout rl_welcome;
     @Override
@@ -76,7 +78,13 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Log.e("TAG","onAnimationEnd");
-                startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
+                boolean aBoolean = CacheUtils.getBoolean(WelcomeActivity.this, "1993");
+                if(aBoolean) {
+                    startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                }else {
+                    startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
+                }
+
                 finish();
             }
 
