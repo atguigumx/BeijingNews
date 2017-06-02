@@ -1,6 +1,7 @@
 package fragment;
 
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -57,13 +58,14 @@ public class ContentFragment extends BaseFragment {
         setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);//设置默认不能侧滑
 
         vp.setAdapter(new MyPagerAdapter());
-
+        pagers.get(0).initData();
+        setListener();
         rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.rb_home:
-                        vp.setCurrentItem(0);  //第二个加false取消页面变换动画
+                        vp.setCurrentItem(0);  //第二个参数加false取消页面变换动画
                       //  isEnableSlidingMenu(false);
                         setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
                         break;
@@ -87,6 +89,25 @@ public class ContentFragment extends BaseFragment {
         });
     }
 
+    private void setListener() {
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pagers.get(position).initData();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
     private class MyPagerAdapter extends PagerAdapter {
         @Override
         public int getCount() {
@@ -103,7 +124,7 @@ public class ContentFragment extends BaseFragment {
             BasePager basePager = pagers.get(position);
             View rootView = basePager.rootView;
             //调用initData方法,不调用没有子类数据
-            basePager.initData();
+            //basePager.initData();
             container.addView(rootView);
             return rootView;
         }

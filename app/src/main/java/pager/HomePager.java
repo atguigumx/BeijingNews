@@ -18,8 +18,8 @@ public class HomePager extends BasePager {
     @Override
     public void initData() {
         super.initData();
-        //把数据绑定到视图上
 
+        System.out.println("主页加载了...");
         //设置标题
         tv_title.setText("主页");
 

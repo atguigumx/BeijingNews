@@ -19,6 +19,7 @@ public class NewsPager extends BasePager {
     @Override
     public void initData() {
         super.initData();
+        System.out.println("新闻加载了...");
         //设置标题
         tv_title.setText("新闻");
 
