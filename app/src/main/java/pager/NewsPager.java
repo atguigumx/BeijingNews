@@ -10,8 +10,12 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.util.List;
+
+import activity.MainActivity;
 import base.BasePager;
 import domain.NewsCenterBean;
+import fragment.LeftMenuFragment;
 import okhttp3.Call;
 import utils.ConstantUtils;
 
@@ -20,6 +24,8 @@ import utils.ConstantUtils;
  */
 
 public class NewsPager extends BasePager {
+    private List<NewsCenterBean.DataBean> datas;
+
     public NewsPager(Context context) {
         super(context);
     }
@@ -72,5 +78,10 @@ public class NewsPager extends BasePager {
     private void processData(String response) {
         NewsCenterBean newsCenterBean = new Gson().fromJson(response, NewsCenterBean.class);
         Log.e("TAG",newsCenterBean.getData().get(0).getChildren().get(0).getTitle());
+        datas=newsCenterBean.getData();
+
+        MainActivity mainActivity= (MainActivity) context;
+        LeftMenuFragment leftMenuFragment = mainActivity.getleftMenuFragment();
+        leftMenuFragment.setData(datas);
     }
 }
