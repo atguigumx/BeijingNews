@@ -31,5 +31,10 @@ public class HomePager extends BasePager {
 
         //添加到布局上
         fl_content.addView(textView);
+        getDateFromeNet();
+    }
+
+    private void getDateFromeNet() {
+
     }
 }

@@ -14,45 +14,7 @@ import com.example.maxin.beijingnews.R;
 import utils.CacheUtils;
 
 public class WelcomeActivity extends AppCompatActivity {
-    /*private RelativeLayout rl_welcome;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        rl_welcome = (RelativeLayout)findViewById(R.id.rl_welcome);
-
-        AlphaAnimation aa = new AlphaAnimation(0, 1);
-        aa.setDuration(1500);
-        aa.setFillAfter(true);
-
-        AnimationSet as = new AnimationSet(false);
-        as.addAnimation(aa);
-
-        rl_welcome.startAnimation(aa);
-
-        as.setAnimationListener(new MyAnimationListener());
-    }
-    class MyAnimationListener implements Animation.AnimationListener {
-
-        @Override
-        public void onAnimationStart(Animation animation) {
-            //动画开始时的回调
-            Log.e("TAG","Start");
-        }
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            Log.e("TAG","onAnimationEnd");
-            //动画结束时的回调
-            startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
-            finish();
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-
-        }
-    }*/
+    public static String STARTMAIN="1993";
     private RelativeLayout rl_welcome;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         rl_welcome = (RelativeLayout) findViewById(R.id.rl_welcome);
 
         AlphaAnimation aa = new AlphaAnimation(0, 1);
-        aa.setDuration(1500);
+        aa.setDuration(2000);
         aa.setFillAfter(true);//渐变
 
         AnimationSet set = new AnimationSet(false);
@@ -78,7 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Log.e("TAG","onAnimationEnd");
-                boolean aBoolean = CacheUtils.getBoolean(WelcomeActivity.this, "1993");
+                boolean aBoolean = CacheUtils.getBoolean(WelcomeActivity.this, STARTMAIN);
                 if(aBoolean) {
                     startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
                 }else {

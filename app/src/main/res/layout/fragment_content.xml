@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <pager.NoScrollViewPager
+    <view.NoScrollViewPager
         android:id="@+id/vp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"></pager.NoScrollViewPager>
+        android:layout_height="0dp"></view.NoScrollViewPager>
     <RadioGroup
         android:id="@+id/rg_main"
         android:layout_width="match_parent"

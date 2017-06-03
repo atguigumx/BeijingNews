@@ -1,7 +1,6 @@
 package fragment;
 
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -17,8 +16,8 @@ import base.BaseFragment;
 import base.BasePager;
 import pager.HomePager;
 import pager.NewsPager;
-import pager.NoScrollViewPager;
 import pager.SettingPager;
+import view.NoScrollViewPager;
 
 /**
  * Created by shkstart on 2017/6/2.
@@ -59,28 +58,28 @@ public class ContentFragment extends BaseFragment {
 
         vp.setAdapter(new MyPagerAdapter());
         pagers.get(0).initData();
-        setListener();
+        //  setListener();
         rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.rb_home:
                         vp.setCurrentItem(0);  //第二个参数加false取消页面变换动画
-                      //  isEnableSlidingMenu(false);
                         setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+                        pagers.get(0).initData();
                         break;
                 }
                 switch (i) {
                     case R.id.rb_news:
                         vp.setCurrentItem(1);
-                      //  isEnableSlidingMenu(true);
                         setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                        pagers.get(1).initData();
                         break;
                 }
                 switch (i) {
                     case R.id.rb_setting:
                         vp.setCurrentItem(2);
-                       // isEnableSlidingMenu(false);
+                        pagers.get(2).initData();
                         setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
                         break;
                 }
@@ -89,7 +88,7 @@ public class ContentFragment extends BaseFragment {
         });
     }
 
-    private void setListener() {
+    /*private void setListener() {
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -106,7 +105,7 @@ public class ContentFragment extends BaseFragment {
 
             }
         });
-    }
+    }*/
 
     private class MyPagerAdapter extends PagerAdapter {
         @Override
