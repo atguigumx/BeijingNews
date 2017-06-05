@@ -88,6 +88,10 @@ public class ContentFragment extends BaseFragment {
         });
     }
 
+    public NewsPager getNewsPager() {
+        return (NewsPager) pagers.get(1);
+    }
+
     /*private void setListener() {
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

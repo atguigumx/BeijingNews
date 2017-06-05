@@ -14,6 +14,7 @@ import java.util.List;
 import activity.MainActivity;
 import base.BaseFragment;
 import domain.NewsCenterBean;
+import pager.NewsPager;
 
 /**
  * Created by shkstart on 2017/6/2.
@@ -37,6 +38,9 @@ public class LeftMenuFragment extends BaseFragment {
 
                 MainActivity main= (MainActivity) context;
                 main.getSlidingMenu().toggle(); //点击后自动滑回去
+
+                //根据位置切换到对应的详情页面
+                switchPager(prePosition);
             }
         });
         return listView;
@@ -46,6 +50,17 @@ public class LeftMenuFragment extends BaseFragment {
         this.datas=datas;
         adapter=new MyAdapter();
         listView.setAdapter(adapter);
+        switchPager(prePosition);
+    }
+
+    private void switchPager(int postion) {
+        MainActivity mainActivity = (MainActivity) context;
+        //2.得到ContentFragment
+        ContentFragment contentFragment = mainActivity.getContentFragment();
+        //3.得到NewsPager
+        NewsPager newsPager = contentFragment.getNewsPager();
+        //4.调用切换方法
+        newsPager.swichPager(postion);
     }
 
     class MyAdapter extends BaseAdapter{
