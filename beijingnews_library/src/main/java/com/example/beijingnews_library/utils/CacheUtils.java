@@ -1,4 +1,4 @@
-package utils;
+package com.example.beijingnews_library.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

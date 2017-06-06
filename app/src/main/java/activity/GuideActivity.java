@@ -13,12 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.beijingnews_library.utils.CacheUtils;
+import com.example.beijingnews_library.utils.DensityUtil;
 import com.example.maxin.beijingnews.R;
 
 import java.util.ArrayList;
-
-import utils.CacheUtils;
-import utils.DensityUtil;
 
 import static com.example.maxin.beijingnews.R.id.iv_red_point;
 import static com.example.maxin.beijingnews.R.id.ll_point_group;

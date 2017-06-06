@@ -1,4 +1,4 @@
-package utils;
+package com.example.beijingnews_library.utils;
 
 /**
  * Created by shkstart on 2016/10/17.

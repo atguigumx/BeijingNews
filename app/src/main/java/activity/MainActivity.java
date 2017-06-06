@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.example.beijingnews_library.utils.DensityUtil;
 import com.example.maxin.beijingnews.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import fragment.ContentFragment;
 import fragment.LeftMenuFragment;
-import utils.DensityUtil;
+
 
 public class MainActivity extends SlidingFragmentActivity {
     public static final String LEFT_TAG = "left_tag";

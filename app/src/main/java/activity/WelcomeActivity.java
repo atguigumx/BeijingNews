@@ -9,9 +9,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.widget.RelativeLayout;
 
+import com.example.beijingnews_library.utils.CacheUtils;
 import com.example.maxin.beijingnews.R;
 
-import utils.CacheUtils;
+
 
 public class WelcomeActivity extends AppCompatActivity {
     public static String STARTMAIN="1993";

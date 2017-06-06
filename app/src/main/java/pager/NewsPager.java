@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.example.beijingnews_library.utils.CacheUtils;
+import com.example.beijingnews_library.utils.ConstantUtils;
 import com.google.gson.Gson;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -24,8 +26,7 @@ import detailpager.VoteMenuDetailPager;
 import domain.NewsCenterBean;
 import fragment.LeftMenuFragment;
 import okhttp3.Call;
-import utils.CacheUtils;
-import utils.ConstantUtils;
+
 
 /**
  * Created by shkstart on 2017/6/2.
@@ -63,7 +64,7 @@ public class NewsPager extends BasePager {
 
         //添加到布局上
         //fl_content.addView(textView);
-        String json=CacheUtils.getString(context,ConstantUtils.NEWSCENTER_PAGER_URL);
+        String json= CacheUtils.getString(context,ConstantUtils.NEWSCENTER_PAGER_URL);
         if(!TextUtils.isEmpty(json)) {
                 processData(json);
         }
