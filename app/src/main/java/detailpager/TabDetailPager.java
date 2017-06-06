@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -57,6 +60,7 @@ public class TabDetailPager extends MenuDetailBasePager {
     private PullToRefreshListView pull_refresh_list;
     private boolean isLoadMore= false;
     private String moreUrl;
+    private MyHandler handler;
 
       /**
         * 新闻ID数组key
@@ -111,7 +115,12 @@ public class TabDetailPager extends MenuDetailBasePager {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                if(state==ViewPager.SCROLL_STATE_DRAGGING) {
+                    handler.removeCallbacksAndMessages(null);
+                }else if(state==ViewPager.SCROLL_STATE_IDLE) {
+                    handler.removeCallbacksAndMessages(null);
+                    handler.postDelayed(new MyRunnable(),4000);
+                }
             }
         });
         pull_refresh_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -185,7 +194,21 @@ public class TabDetailPager extends MenuDetailBasePager {
 
                 });
     }
+    class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            viewpager.setCurrentItem((viewpager.getCurrentItem()+1)%topnews.size());
+            handler.postDelayed(new MyRunnable(),4000);
+        }
+    }
+    class MyRunnable implements Runnable {
 
+        @Override
+        public void run() {
+        handler.sendEmptyMessage(0);
+        }
+    }
     private void processData(String response) {
 
         TabDetailPagerBean bean = new Gson().fromJson(response, TabDetailPagerBean.class);
@@ -229,7 +252,12 @@ public class TabDetailPager extends MenuDetailBasePager {
             isLoadMore=false;
         }
 
-
+        if(handler==null) {
+            handler=new MyHandler();
+        }else {
+            handler.removeCallbacksAndMessages(null);
+        }
+        handler.postDelayed(new MyRunnable(),4000);
     }
     class MyAdapter extends BaseAdapter{
 
@@ -283,6 +311,21 @@ public class TabDetailPager extends MenuDetailBasePager {
             }else {
                 viewHolder.tvDesc.setTextColor(Color.BLACK);
             }
+
+            viewHolder.ivIcon.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()) {
+                        case  MotionEvent.ACTION_DOWN:
+                            handler.removeCallbacksAndMessages(null);
+                            break;
+                        case  MotionEvent.ACTION_UP:
+                            handler.postDelayed(new MyRunnable(),4000);
+                            break;
+                    }
+                    return true;
+                }
+            });
             return convertView;
         }
     }

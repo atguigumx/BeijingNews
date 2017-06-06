@@ -22,7 +22,16 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:background="@android:color/transparent"
-
-
+        />
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/ib_switch_list_glide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_pic_grid_type"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
         />
 </RelativeLayout>

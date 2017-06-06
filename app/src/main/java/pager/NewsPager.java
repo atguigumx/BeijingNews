@@ -35,6 +35,7 @@ import okhttp3.Call;
 public class NewsPager extends BasePager {
     private List<NewsCenterBean.DataBean> datas;
     private ArrayList<MenuDetailBasePager> pagers;
+
     public NewsPager(Context context) {
         super(context);
     }
@@ -108,10 +109,11 @@ public class NewsPager extends BasePager {
 
         MainActivity mainActivity= (MainActivity) context;
 
+
         pagers=new ArrayList<>();
         pagers.add(new NewsMenuDetailPager(context,datas.get(0).getChildren()));
         pagers.add(new TopicMenuDetailPager(context));
-        pagers.add(new PhotosMenuDetailPager(context));
+        pagers.add(new PhotosMenuDetailPager(context,datas.get(2)));
         pagers.add(new InteractMenuDetailPager(context));
         pagers.add(new VoteMenuDetailPager(context));
 
@@ -174,10 +176,24 @@ public class NewsPager extends BasePager {
     }*/
 
     public void swichPager(int position) {
+        tv_title.setText(datas.get(position).getTitle());
         MenuDetailBasePager basePager = pagers.get(position);
         View rootView=basePager.rootView;
         fl_content.removeAllViews();
         fl_content.addView(rootView);
         basePager.initData();
+
+        if(position==2) {
+            ib_switch_list_glide.setVisibility(View.VISIBLE);
+            ib_switch_list_glide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PhotosMenuDetailPager basePager1 = (PhotosMenuDetailPager) pagers.get(2);
+                    basePager1.changeListAndGride(ib_switch_list_glide);
+                }
+            });
+        }else {
+            ib_switch_list_glide.setVisibility(View.GONE);
+        }
     }
 }

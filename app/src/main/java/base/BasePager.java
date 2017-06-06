@@ -17,6 +17,7 @@ public class BasePager {
     public View rootView;
     public TextView tv_title;
     public ImageButton ib_menu;
+    public ImageButton ib_switch_list_glide;
     //子类的视图添加到该布局上
     public FrameLayout fl_content;
     public BasePager(Context context){
@@ -25,6 +26,7 @@ public class BasePager {
         tv_title = (TextView) rootView.findViewById(R.id.tv_titile);
         fl_content = (FrameLayout) rootView.findViewById(R.id.fl_content);
         ib_menu = (ImageButton) rootView.findViewById(R.id.ib_menu);
+        ib_switch_list_glide = (ImageButton) rootView.findViewById(R.id.ib_switch_list_glide);
     }
 
     //子类要绑定数据的时候重写该方法
