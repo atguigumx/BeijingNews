@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.beijingnews_library.utils.BitmapCacheUtils;
+import com.example.beijingnews_library.utils.ConstantUtils;
 import com.example.maxin.beijingnews.R;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
     private BitmapCacheUtils bitmapCacheUtils;
     private final Context context;
     private final List<PhotosMenuDetailPagerBean.DataBean.NewsBean> datas;
-    private String imageUrl;
+
 
     private Handler handler=new Handler(){
         @Override
@@ -80,7 +81,7 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
     public void onBindViewHolder(MyViewHolder holder, int position) {
         PhotosMenuDetailPagerBean.DataBean.NewsBean newsBean = datas.get(position);
         holder.tv_title.setText(newsBean.getTitle());
-        imageUrl = BASE_URL+newsBean.getListimage();
+        String imageUrl = BASE_URL+newsBean.getListimage();
         Glide.with(context)
                 .load(imageUrl)
                 .placeholder(R.drawable.pic_item_list_default)
@@ -102,8 +103,6 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
     class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView iv_icon;
         TextView tv_title;
-        //String imageUrl = ConstantUtils.BASE_URL + datas.get(getLayoutPosition()).getListimage();
-        //String imageUrl=ConstantUtils.BASE_URL+datas.get(getLayoutPosition()).getListimage();
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +110,7 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String imageUrl= ConstantUtils.BASE_URL+datas.get(getLayoutPosition()).getListimage();
                     Intent intent = new Intent(context, PicassoSampleActivity.class);
                     intent.setData(Uri.parse(imageUrl));
                     context.startActivity(intent);
