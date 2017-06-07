@@ -43,16 +43,6 @@ public class NewsPager extends BasePager {
     @Override
     public void initData() {
         super.initData();
-        System.out.println("新闻加载了...");
-        //设置标题
-        tv_title.setText("新闻");
-
-        //创建子类的视图
-        /*TextView textView = new TextView(context);
-        textView.setText("新闻页面的内容");
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.RED);*/
-
         ib_menu.setVisibility(View.VISIBLE);
         ib_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +112,7 @@ public class NewsPager extends BasePager {
 
         swichPager(0);
     }
-
+    //手动解析
    /* private NewsCenterBean parseJson(String response) {
         NewsCenterBean newsCenterBean = new NewsCenterBean();
         try {
@@ -176,6 +166,7 @@ public class NewsPager extends BasePager {
     }*/
 
     public void swichPager(int position) {
+        //设置标题
         tv_title.setText(datas.get(position).getTitle());
         MenuDetailBasePager basePager = pagers.get(position);
         View rootView=basePager.rootView;

@@ -1,3 +1,3 @@
-include ':app', ':SlidingMenu_library', ':beijingnews_library'
+include ':app', ':SlidingMenu_library', ':beijingnews_library', ':AndroidAndH5', ':photoview-library'
 include ':ViewPagerIndicator_library'
 include ':Refresh_library'

@@ -46,10 +46,12 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
 
     @Override
     public View initView() {
+
         View view=View.inflate(context, R.layout.pager_photos_menu_detail,null);
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);
         swiperefresh = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+        swiperefresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
