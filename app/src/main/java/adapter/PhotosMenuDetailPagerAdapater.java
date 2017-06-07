@@ -2,8 +2,12 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.beijingnews_library.utils.BitmapCacheUtils;
 import com.example.maxin.beijingnews.R;
 
 import java.util.List;
@@ -28,14 +33,38 @@ import static com.example.maxin.beijingnews.R.id.iv_icon;
 public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMenuDetailPagerAdapater.MyViewHolder> {
 
 
+    private final RecyclerView recyclerView;
+    private BitmapCacheUtils bitmapCacheUtils;
     private final Context context;
     private final List<PhotosMenuDetailPagerBean.DataBean.NewsBean> datas;
     private String imageUrl;
 
-
-    public PhotosMenuDetailPagerAdapater(Context context, List<PhotosMenuDetailPagerBean.DataBean.NewsBean> news) {
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1 :
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    int position = msg.arg1;
+                    Log.e("TAG","请求图片成功=="+position);
+                    ImageView imageview = (ImageView) recyclerView.findViewWithTag(position);
+                    if(imageview != null && bitmap != null){
+                        imageview.setImageBitmap(bitmap);
+                    }
+                    break;
+                case 2 :
+                    position = msg.arg1;
+                    Log.e("TAG","请求图片失败=="+position);
+                    break;
+            }
+        }
+    };
+    public PhotosMenuDetailPagerAdapater(Context context, List<PhotosMenuDetailPagerBean.DataBean.NewsBean> news,RecyclerView recyclerView) {
         this.context=context;
         this.datas=news;
+        //把Hanlder传入构造方法
+        bitmapCacheUtils=new BitmapCacheUtils(handler);
+        this.recyclerView=recyclerView;
     }
 
     @Override
@@ -58,6 +87,11 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
                 .error(R.drawable.pic_item_list_default)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.iv_icon);
+       /*Bitmap bitmap=bitmapCacheUtils.getBitmap(imageUrl,position);
+        holder.iv_icon.setTag(position);
+        if(bitmap!=null) {
+            holder.iv_icon.setImageBitmap(bitmap);
+        }*/
     }
 
     @Override

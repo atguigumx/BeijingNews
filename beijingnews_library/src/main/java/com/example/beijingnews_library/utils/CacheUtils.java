@@ -2,6 +2,9 @@ package com.example.beijingnews_library.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
+
+import java.io.File;
 
 /**
 
@@ -16,8 +19,20 @@ public class CacheUtils {
      * @param values
      */
     public static void putString(Context context, String key, String values) {
+        //使用SharePreferences
         SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
         sp.edit().putString(key, values).commit();
+
+        //使用文件存储   SD卡可用
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            try {
+                String dir=Environment.getExternalStorageDirectory()+"/beijingnews/files";
+                String fileName=MD5Encoder.encode(key);
+                File file = new File(dir, fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

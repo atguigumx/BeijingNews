@@ -96,7 +96,7 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
         news = bean.getData().getNews();
         if(news!=null&&news.size()>0) {
             progressbar.setVisibility(View.GONE);
-            adapter=new PhotosMenuDetailPagerAdapater(context,news);
+            adapter=new PhotosMenuDetailPagerAdapater(context,news,recyclerview);
             recyclerview.setAdapter(adapter);
             recyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayout.VERTICAL,false));
         }
