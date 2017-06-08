@@ -54,7 +54,6 @@ public class NewsPager extends BasePager {
         });
 
         //添加到布局上
-        //fl_content.addView(textView);
         String json= CacheUtils.getString(context,ConstantUtils.NEWSCENTER_PAGER_URL);
         if(!TextUtils.isEmpty(json)) {
                 processData(json);

@@ -106,7 +106,6 @@ public class PhotosMenuDetailPagerAdapater extends RecyclerView.Adapter<PhotosMe
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
